@@ -4,6 +4,13 @@ import matter from 'gray-matter'
 import { remark } from 'remark'
 import html from 'remark-html'
 
+export type Post = {
+  id: any
+  title: string
+  date: string
+  contentHtml: string
+}
+
 const postsDirectory = path.join(process.cwd(), 'posts')
 
 export function getSortedPostsData() {
@@ -24,7 +31,7 @@ export function getSortedPostsData() {
     return {
       id,
       ...matterResult.data,
-    }
+    } as Post
   })
   // Sort posts by date
   return allPostsData.sort(({ date: a }, { date: b }) => {
@@ -68,5 +75,5 @@ export async function getPostData(id) {
     id,
     contentHtml,
     ...matterResult.data,
-  }
+  } as Post
 }

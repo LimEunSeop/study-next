@@ -4,17 +4,26 @@ import styles from './layout.module.css'
 import utilStyles from '../styles/utils.module.css'
 import Link from 'next/link'
 
+type Props = {
+  children: React.ReactNode
+  home: boolean
+}
+
+const defaultProps: Partial<Props> = {
+  home: false,
+}
+
 const name = 'Eunseop'
 export const siteTitle = 'Next.js Sample Website'
 
-export default function Layout({ children, home }) {
+export default function Layout({ children, home }: Props) {
   return (
     <div className={styles.container}>
       <Head>
         <link rel="icon" href="/favicon.ico" />
         <meta
           name="description"
-          constent="Learn how to build a personal website using Next.js"
+          content="Learn how to build a personal website using Next.js"
         />
         <meta
           property="og:image"
@@ -71,3 +80,5 @@ export default function Layout({ children, home }) {
     </div>
   )
 }
+
+Layout.defaultProps = defaultProps
